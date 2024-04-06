@@ -33,7 +33,7 @@ namespace L01P022021AR601.Controllers
             }
 
             var facultades = await _context.facultades
-                .FirstOrDefaultAsync(m => m.acultad == id);
+                .FirstOrDefaultAsync(m => m.facultad == id);
             if (facultades == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace L01P022021AR601.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("acultad")] facultades facultades)
         {
-            if (id != facultades.acultad)
+            if (id != facultades.facultad)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace L01P022021AR601.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!facultadesExists(facultades.acultad))
+                    if (!facultadesExists(facultades.facultad))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace L01P022021AR601.Controllers
             }
 
             var facultades = await _context.facultades
-                .FirstOrDefaultAsync(m => m.acultad == id);
+                .FirstOrDefaultAsync(m => m.facultad == id);
             if (facultades == null)
             {
                 return NotFound();
@@ -150,7 +150,7 @@ namespace L01P022021AR601.Controllers
 
         private bool facultadesExists(string id)
         {
-            return _context.facultades.Any(e => e.acultad == id);
+            return _context.facultades.Any(e => e.facultad == id);
         }
     }
 }
